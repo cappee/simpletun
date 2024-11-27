@@ -37,6 +37,7 @@
 #include <sys/time.h>
 #include <errno.h>
 #include <stdarg.h>
+#include <caesar.h>
 #include <rc4.h>
 
 /* buffer for reading from tun/tap interface, must be >= 1500 */
@@ -49,6 +50,8 @@
 #define IP_HDR_LEN 20
 #define ETH_HDR_LEN 14
 #define ARP_PKT_LEN 28
+
+#define N 193
 
 int debug;
 char *progname;
@@ -352,7 +355,14 @@ int main(int argc, char *argv[]) {
       tap2net++;
       do_debug("TAP2NET %lu: Read %d bytes from the tap interface\n", tap2net, nread);
 
+      /* llamada a funcion para usar el Caesar en cambio de RC4 */
+      /* caesar_cipher(buffer, nread); */
+
+      /* creamos un array donde poner los datos cifrados */
       char encrypted[BUFSIZE];
+      /* llamamos la función rc4_encrypt dandole el estado de RC4, 
+          los datos a cifrar, donde poner los datos cifrados 
+          y la longitud de los datos */
       rc4_encrypt(&ctx, (uint8*)buffer, (uint8*)encrypted, nread);
 
       /* write length + packet */
@@ -380,8 +390,15 @@ int main(int argc, char *argv[]) {
       nread = read_n(net_fd, buffer, ntohs(plength));
       do_debug("NET2TAP %lu: Read %d bytes from the network\n", net2tap, nread);
 
+      /* creamos un array donde poner los datos cifrados */
       char decrypted_buffer[BUFSIZE];
+      /* llamamos la función rc4_decrypt dandole el estado de RC4, 
+          los datos a descifrar, donde poner los datos descifrados 
+          y la longitud de los datos */
       rc4_decrypt(&ctx, (uint8*)buffer, (uint8*)decrypted_buffer, nread);
+
+      /* llamada a funcion para usar el Caesar en cambio de RC4 */
+      caesar_decipher(buffer, nread);
 
       /* now buffer[] contains a full packet or frame, write it into the tun/tap interface */ 
       nwrite = cwrite(tap_fd, decrypted_buffer, nread);

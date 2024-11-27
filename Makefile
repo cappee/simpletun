@@ -1,6 +1,6 @@
 TARGET = simpletun
 
-SRCS = simpletun.c rc4/rc4.c
+SRCS = simpletun.c caesar/caesar.c rc4/rc4.c
 
 OBJS = $(SRCS:.c=.o)
 
