@@ -253,7 +253,8 @@ int main(int argc, char *argv[]) {
     usage();
   }
 
-  const uint8_t key[] = "simpletun_secret";
+
+  const uint8_t key[] = "wINT1mwSkF2UsIKWiJBtcYV6NieIJpn4OuKUd3qcrZySTKRA+/RohC2S++VMA8Rct1vgbTRgAIBg/6K4o3lc5RHfLiSP0ITgzOZ6EJiC/hL/6Wlh6WDd1827UMAgkfOp3vMEGjqqg5GUHgxvEaAM4u3T7WVLo214NGLfB1Q/MqnmIYtFoDEjtLreiNDB9eLF";
 
   rc4_ctx ctx;
 
