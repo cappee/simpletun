@@ -1,0 +1,3 @@
+[submodule "rc4"]
+	path = rc4
+	url = /path/to/your/repository/rc4
