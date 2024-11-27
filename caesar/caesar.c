@@ -1,4 +1,6 @@
-#include <caesar.h>
+#include "caesar.h"
+
+#define N 193
 
 /**************************************************************************
  * caesar_cipher: aplica el cifrado caesar-N a los datos proporcionados.  *

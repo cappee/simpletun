@@ -37,8 +37,8 @@
 #include <sys/time.h>
 #include <errno.h>
 #include <stdarg.h>
-#include <caesar.h>
-#include <rc4.h>
+#include "caesar/caesar.h"
+#include "rc4/rc4.h"
 
 /* buffer for reading from tun/tap interface, must be >= 1500 */
 #define BUFSIZE 2000   
@@ -50,8 +50,6 @@
 #define IP_HDR_LEN 20
 #define ETH_HDR_LEN 14
 #define ARP_PKT_LEN 28
-
-#define N 193
 
 int debug;
 char *progname;
