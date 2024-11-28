@@ -253,11 +253,11 @@ int main(int argc, char *argv[]) {
     usage();
   }
 
-
-  const uint8_t key[] = "wINT1mwSkF2UsIKWiJBtcYV6NieIJpn4OuKUd3qcrZySTKRA+/RohC2S++VMA8Rct1vgbTRgAIBg/6K4o3lc5RHfLiSP0ITgzOZ6EJiC/hL/6Wlh6WDd1827UMAgkfOp3vMEGjqqg5GUHgxvEaAM4u3T7WVLo214NGLfB1Q/MqnmIYtFoDEjtLreiNDB9eLF";
-
+  /* esta será nuestra llave para rc4 */
+  const uint8_t key[] = "LC0X8wmJkCI8PQlEUtT6rPzz4pjY2DrHJtTbCg/MsceC+VzP4K+FUrBiJkr6+QtS";
+  /* esto es un struct donde se guardan los array de estado para cifrar y descifrar */
   rc4_ctx ctx;
-
+  /* llamada a función para initializar el estado con nuestra llave */
   rc4_ks(&ctx, key, strlen((char *)key));
 
   /* initialize tun/tap interface */
